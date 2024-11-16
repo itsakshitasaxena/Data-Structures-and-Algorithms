@@ -1,0 +1,34 @@
+class Solution {
+    public int longestMountain(int[] arr) {
+        if(arr.length<3)
+           return 0;
+        int longest=0,n=arr.length;
+        for(int i=1;i<=n-2;i++)
+        {
+            int count=1;
+            boolean f=false;
+            int j=i;
+            //increasing mountain
+            while(j<n&&arr[j]>arr[j-1])
+            {
+                j++;
+                count++;
+            }
+            //decreasing mountain
+            while(i!=j&&j<n&&arr[j]<arr[j-1])
+            {
+                j++;
+                count++;
+                f=true;
+            }
+            //Maximum length of mountain
+            if(i!=j&&f&&count>2)
+             {
+                longest=Math.max(longest,count);
+                j--;
+             }
+             i=j;    
+        }
+        return longest;
+    }
+}
