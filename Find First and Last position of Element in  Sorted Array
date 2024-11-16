@@ -1,0 +1,35 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int  n=nums.length;
+        int[] catch_index={-1,-1};
+        int left=0,right=n-1,f1=0,f2=0;
+        while(left<=right)
+        {
+            if(f1==0)
+            {
+                if(target==nums[left])
+                {
+                   catch_index[0]=left;
+                   f1++;
+                   continue;
+                }
+                left++;
+            } 
+            if(f2==0)
+            {
+                if(target==nums[right])
+                 {
+                    catch_index[1]=right;
+                    f2++;
+                    continue;
+                 }
+                right--;
+            }
+             if(f1!=0&&f2!=0)
+           return catch_index;
+        }
+        
+        
+        return catch_index;
+    }
+}
