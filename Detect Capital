@@ -1,0 +1,43 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+
+        if(Capitals(word)||Not_Capitals(word)||First_Capital(word))
+          return true;
+        return false;
+    }
+    public static boolean Capitals(String word)
+    {
+        int f=0;
+        for(int i=0;i<word.length();i++)
+          {
+            if(word.charAt(i)>=65&&word.charAt(i)<=90)
+               f+=1;
+          }
+        return f==word.length();
+    }
+    public static boolean Not_Capitals(String word)
+    {
+        int f=0;
+        for(int i=0;i<word.length();i++)
+          {
+            if(word.charAt(i)>=97&&word.charAt(i)<=123)
+               f+=1;
+          }
+        return f==word.length();
+    }
+    public static boolean First_Capital(String word)
+    {
+        int f=0;
+        if(word.charAt(0)>=65&&word.charAt(0)<=90)
+          f+=1;
+        for(int i=1;i<word.length();i++)
+        {
+            if(word.charAt(i)>=97&&word.charAt(i)<=123)
+               f+=1;
+        }
+        return f==word.length();
+    }
+
+
+
+}
