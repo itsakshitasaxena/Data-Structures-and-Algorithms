@@ -1,0 +1,30 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int left=1,right=100000000+1;
+        while(left<right)
+        {
+            int mid=left+(right-left)/2;
+            if(bananas(mid, piles, h))
+            {
+                right=mid;
+            }
+            else
+            {
+                left=mid+1;
+            }
+        }
+        return left;
+
+    }
+    public static boolean bananas(int k, int[] nums, int h)
+    {
+        int hours=0;
+        for(int i=0;i<nums.length;i++)
+            {
+                hours+=nums[i]/k;
+                if(nums[i]%k!=0)
+                  hours++;
+            }
+        return hours<=h;
+    }
+}
