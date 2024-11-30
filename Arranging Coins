@@ -1,0 +1,18 @@
+class Solution {
+    public int arrangeCoins(int n) {
+        //Binary Search
+        int start=1,end=n,res=0;
+        while(start<=end){
+            int mid=(start+end)/2;
+            int count=(mid/2)*(mid+1);
+            if(count>n)
+              end=mid-1;
+            else
+              {
+                start=mid+1;
+                res=Math.max(mid,res);
+              }
+        }
+        return res; 
+    }
+}
