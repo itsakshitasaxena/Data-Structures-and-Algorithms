@@ -1,0 +1,28 @@
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        if(k==0)
+          return 0;
+        return Maximum_Product(nums, k);
+    }
+    public static int Maximum_Product(int[] arr,int k)
+    {
+        int ans=0, si=0, ei=0,p=1;
+        while(ei<arr.length)
+        {
+            //grow
+            p*=arr[ei];   
+
+            //shrink
+            while(p>=k&&si<=ei)
+            {
+                p/=arr[si];
+                si++;
+            }
+
+            //ans update
+            ans+=(ei-si+1);
+              ei++;
+        }
+        return ans;
+    }
+}
