@@ -1,0 +1,40 @@
+class Solution {
+    public String longestPalindrome(String s) {
+         return getsubstring(s);
+        
+    }
+    public static String getsubstring(String s)
+    {
+        String st="";
+        String a="";
+        int f=0;
+        for(int i=0;i<s.length();i++)
+        {
+            for(int j=i+1;j<=s.length();j++)
+            {
+                st=s.substring(i,j);
+                if(ispalindrome(st))
+                   {
+                    if(st.length()>a.length())
+                    {
+                        a=st;
+                    }
+                   }
+            }
+
+        }
+        return a;
+    }
+    public static boolean ispalindrome(String s)
+    {
+        int i=0,j=s.length()-1;
+        while(i<j)
+        {
+            if(s.charAt(i)!=s.charAt(j))
+              return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
