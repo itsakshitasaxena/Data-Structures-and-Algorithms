@@ -1,0 +1,15 @@
+class Solution {
+    public int reverse(int x) {
+        int copy=Math.abs(x);
+        int rev=0;
+        while(copy>0)
+        {
+            int rem=copy%10;
+            if(rev>(Integer.MAX_VALUE-rem)/10)
+               return 0;
+            rev=rev*10+rem;
+            copy/=10;
+        }
+        return x<0 ?(-rev):rev;
+    }
+}
