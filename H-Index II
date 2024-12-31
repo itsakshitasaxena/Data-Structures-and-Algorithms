@@ -1,0 +1,22 @@
+//With Time Complexity-O(log N)
+//Using Binary Search Technique
+class Solution {
+    public int hIndex(int[] citations) {
+        int start=0,end=citations.length-1,h=0;
+        while(start<=end)
+        {
+            int mid=(start+end)/2;
+            int cited_items=citations.length-mid;
+            if(citations[mid]>=cited_items)
+            {
+                h=cited_items;
+                end=mid-1;
+            }
+            else
+            {
+                start=mid+1;
+            }
+        }
+        return h;  
+    }
+}
