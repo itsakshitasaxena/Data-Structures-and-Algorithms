@@ -1,0 +1,9 @@
+class Solution {
+    public boolean isValid(String s) {
+        while(s.contains("()")||s.contains("[]")||s.contains("{}"))
+        s=s.replace("()","").replace("[]","").replace("{}","");
+
+        // If the string is empty, all brackets were matched correctly
+        return s.isEmpty();
+    }
+}
