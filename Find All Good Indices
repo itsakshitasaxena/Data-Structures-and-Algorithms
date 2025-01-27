@@ -1,0 +1,29 @@
+class Solution {
+    public List<Integer> goodIndices(int[] nums, int k) {
+        List<Integer> lst=new ArrayList<>();
+        int[] left=new int[nums.length]; //to track decreasing elements
+        int[] right=new int[nums.length]; // to track increasing elementskjhx  kl;'
+        
+        for(int i=0;i<nums.length;i++)
+        {
+            left[i]=1;
+            right[i]=1;
+        }
+        for(int i=1;i<nums.length;i++)
+        {
+            if(nums[i]<=nums[i-1])
+              left[i]=left[i-1]+1;
+        }
+        for(int i=nums.length-2;i>=0;i--)
+        {
+            if(nums[i]<=nums[i+1])
+              right[i]=right[i+1]+1;
+        }
+        for(int j=k;j<nums.length-k;j++)
+        {
+            if(left[j-1]>=k&&right[j+1]>=k)
+               lst.add(j);
+        }
+        return lst;
+    }
+}
