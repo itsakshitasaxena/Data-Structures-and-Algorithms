@@ -1,0 +1,29 @@
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+        if(s1.equals(s2))
+           return true;
+        int[] fr=new int[26];
+        int noneq=0;
+        for(int i=0;i<s1.length();i++)
+        {
+            if(s1.charAt(i)!=s2.charAt(i))
+            {
+                noneq++;
+                fr[s1.charAt(i)-'a']++;
+                fr[s2.charAt(i)-'a']--;
+            }
+        }
+        if(noneq==0)
+           return true;
+        if(noneq==2)
+        {
+            for(int i=0;i<26;i++)
+            {
+                if(fr[i]!=0)
+                  return false;
+            }
+            return true;
+        }
+        return false;
+    }
+}
