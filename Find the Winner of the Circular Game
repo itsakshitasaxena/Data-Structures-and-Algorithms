@@ -1,0 +1,15 @@
+class Solution {
+    public int findTheWinner(int n, int k) {
+        ArrayList<Integer> lst=new ArrayList<>();
+        for(int i=1;i<=n;i++)
+            lst.add(i);
+        int i=0;
+        while(lst.size()!=1) //circular and winner is the one ele
+        {
+            i+=k-1; //increasing i by 1
+            i%=(lst.size()); 
+            lst.remove(i); //removing at index i
+        }
+        return lst.get(0);
+    }
+}
