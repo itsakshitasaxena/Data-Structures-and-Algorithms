@@ -1,0 +1,20 @@
+class Solution {
+    public int myAtoi(String s) {
+        long res=0; int i=0;
+        s=s.trim();
+        if(s.length()==0)   return 0;
+        boolean isneg=false;
+        if(s.charAt(0)=='+')    i++;
+        else if(s.charAt(0)=='-'){
+            i++;
+            isneg=true;
+        }
+        while(i<s.length() && Character.isDigit(s.charAt(i))){
+            res=res*10+(s.charAt(i)-'0');
+            if(res>Integer.MAX_VALUE && !isneg) return Integer.MAX_VALUE;
+            else if(res*-1 < Integer.MIN_VALUE && isneg) return Integer.MIN_VALUE;
+            i++;
+        }
+        return isneg?(int)(res*-1):(int)res;
+    }
+}
