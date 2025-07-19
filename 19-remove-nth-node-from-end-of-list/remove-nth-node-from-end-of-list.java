@@ -13,7 +13,7 @@ class Solution {
         ListNode slow=head, fast=head;
         for(int i=0;i<n;i++)
             fast=fast.next;
-        if(fast==null)   return head.next;
+        if(fast==null)   return head.next; //in case (cnt==n)
         while(fast.next!=null){
             slow=slow.next;
             fast=fast.next;
