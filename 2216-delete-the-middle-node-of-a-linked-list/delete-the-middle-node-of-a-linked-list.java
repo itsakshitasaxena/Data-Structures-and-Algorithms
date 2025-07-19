@@ -13,7 +13,7 @@ class Solution {
         if(head==null || head.next==null)     return null;
         ListNode slow=head, fast=head;
 // we do a slight change in existing T&H algo we move fast before the loop by 2 steps so that slow moves exact before the middle node 
-        fast=head.next.next;
+        fast=fast.next.next;
         while(fast!=null && fast.next!=null){
             slow=slow.next;
             fast=fast.next.next;
