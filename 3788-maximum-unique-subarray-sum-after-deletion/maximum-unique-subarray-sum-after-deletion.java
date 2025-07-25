@@ -8,7 +8,7 @@ class Solution {
             if(i>0)  sum+=i;
             else min=Math.max(min,i);
         }
-        if(sum==0)  sum=min;
-        return sum;
+        // if(sum==0)  sum=min;
+        return sum==0?min:sum;
     }
 }
