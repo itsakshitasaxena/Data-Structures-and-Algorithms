@@ -18,16 +18,26 @@ class Solution {
     public int kthSmallest(TreeNode root, int k) {
         if(root==null) return -1;
         
-        int min=kthSmallest(root.left,k);
-        if(min>=0)   //if found greater than 0 is the smallest one
-            return min; 
+// int check = kthLargest(root.right, k); //if kth largest
+
+        int check=kthSmallest(root.left,k);
+        if(check>=0)   //if found greater than 0 is the smallest one
+            return check; 
         pos++;
 
         if(pos==k)
             return root.val;
         //inorder tarversal is already sorted, so we used it
         return kthSmallest(root.right, k);
+
+// return kthLargest(root.left, k); ///if kth largest
+
     }
+
+//For smallest, Left → Root → Right 
+// For largest,  Right → Root → Left(reverse of smallest)
+
+
 
 
 
