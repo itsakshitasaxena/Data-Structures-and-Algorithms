@@ -19,8 +19,8 @@ class Solution {
         if(dp[r][c]!=-101)    return dp[r][c];
         int ans=Integer.MAX_VALUE;
         for(int i=0;i<dp[0].length;i++){
-            if(c!=i)
-                ans=Math.min(ans,minsum(ar, r+1, i, dp)); 
+            if(c!=i) //not allowed in same column
+                ans=Math.min(ans,minsum(ar, r+1, i, dp)); //minium of all columns
         }
         // int diag_left=minsum(ar, r+1, c-1, dp);
         // int diag_right=minsum(ar, r+1, c+1, dp);
