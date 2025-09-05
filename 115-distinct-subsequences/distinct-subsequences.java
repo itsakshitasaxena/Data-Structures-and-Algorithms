@@ -19,6 +19,6 @@ class Solution {
 
         exc=dis_TD(s, t, i+1, j, dp); // only s index+1
 
-        return dp[i][j]=inc+exc;
+        return dp[i][j]=inc+exc; // store count of both
     }
 }
