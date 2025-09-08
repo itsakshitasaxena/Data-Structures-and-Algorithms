@@ -20,7 +20,7 @@ class Solution {
     public TreeNode makeLL(TreeNode root){
         if(root==null)    return null;
 
-        if(root.left==null && root.right==null) 
+        if(root.left==null && root.right==null)  //for single node-no child
             return root;
 
         TreeNode left_tail=makeLL(root.left);
