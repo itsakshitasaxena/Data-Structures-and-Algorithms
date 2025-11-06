@@ -10,7 +10,7 @@ This repository contains my daily LeetCode problem-solving journey where I focus
 **LeetCode Profile:** https://leetcode.com/u/its_ak12/
 
 <p align="center">
-  <img src="https://leetcode-badge-showcase.vercel.app/api?username=axeita1&theme=dark&font=baloo&extension=activity" />
+  <img src="https://leetcode-badge-showcase.vercel.app/api?username=its_ak12&theme=dark&font=baloo&extension=activity" />
 </p>
 
 ---
@@ -30,6 +30,3 @@ This repository contains my daily LeetCode problem-solving journey where I focus
 - Cover patterns topic-wise
 - Improve optimization techniques
 - Build intuition for DFS, DP & Graph problems
-
-## 🗂️ Repository Structure
-
