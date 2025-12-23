@@ -1,31 +1,14 @@
 class Solution {
     public String generateTag(String caption) {
-        StringBuilder ans=new StringBuilder();
-        ans.append("#");
-        boolean f=false;
-        int i=0;
-        while(i<caption.length() && caption.charAt(i)==' ')  i++;
-        for(;i<caption.length() && ans.length()<100;i++){
-            char ch=caption.charAt(i);
-            if(ch==' ')  f=true;
-            if(!Character.isLetter(ch)) continue;
-            if(f){
-                if(Character.isUpperCase(ch)){
-                    ans.append(ch);
-                }
-                else{
-                    ans.append((char)(ch-32));
-                    // f=false;
-                }
-                f=false;
-            }
-            else if(Character.isUpperCase(ch)){
-                ans.append((char)(ch+32));
-            }
-            else{
-                ans.append(ch);
-            }
+         String[] st=caption.trim().split("\\s+");
+        if(st.length==0||st[0].isEmpty()) return "#";
+        StringBuilder sb=new StringBuilder("#");
+        sb.append(st[0].toLowerCase());
+        for(int i=1;i<st.length;i++){
+            sb.append(Character.toUpperCase(st[i].charAt(0)));
+            sb.append(st[i].substring(1).toLowerCase());
         }
-        return ans.toString();
+        // System.out.println(sb.length());
+        return sb.length() > 100 ? sb.substring(0, 100) : sb.toString();
     }
 }
