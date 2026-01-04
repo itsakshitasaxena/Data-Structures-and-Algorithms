@@ -1,18 +1,23 @@
 class Solution {
     public int minDistance(String word1, String word2) {
-        int[][] lcs=new int[word1.length()+1][word2.length()+1];
-        for(int i=1;i<=word1.length();i++)
-        {
-            for(int j=1;j<=word2.length();j++)
-            {
-                if(word1.charAt(i-1)==word2.charAt(j-1))
-                  lcs[i][j]=lcs[i-1][j-1]+1;
-                else
-                   lcs[i][j]=Math.max(lcs[i-1][j],lcs[i][j-1]);
-            }
-            
+        int[][] dp=new int[word1.length()][word2.length()];
+        for(int[] a:dp) Arrays.fill(a,-1);
+        int res=lcs(word1,word2,0,0,dp);
+        int lensum=word1.length()+word2.length();
+        return lensum-2*res;
+    }
+    public int lcs(String w1, String w2, int i, int j, int[][] dp){
+        if(i>=w1.length()||j>=w2.length())  return 0;
+        if(dp[i][j]!=-1)  return dp[i][j];
+        int ans=0;
+        if(w1.charAt(i)==w2.charAt(j)){
+            ans=1+lcs(w1,w2,i+1,j+1,dp);
         }
-        int c=lcs[word1.length()][word2.length()];
-        return (word1.length()-c)+(word2.length()-c);
+        else{
+            int f=lcs(w1,w2,i+1,j,dp);
+            int s=lcs(w1,w2,i,j+1,dp);
+            ans=Math.max(f,s);
+        }
+        return dp[i][j]=ans;
     }
 }
