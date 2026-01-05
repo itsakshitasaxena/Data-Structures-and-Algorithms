@@ -17,7 +17,7 @@ class Solution {
                 }
             }
         }
-        int max=1,cnt=0;
+        int max=0,cnt=0;
         for(int i:dp){
             if(i>max) max=i;
         }
