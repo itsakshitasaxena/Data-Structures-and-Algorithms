@@ -12,10 +12,10 @@ class Solution {
                 ans[i]=-1;
                 if(map.containsKey(rains[i])){ //if lake already full need to dry otheriwse flood 
                     Integer min_dry=set.ceiling(map.get(rains[i])); //give us the earliest dry day as treemap is sorted so using it's direct fn
-                    if(min_dry==null)//no valid dry day->flood-> impossible
+                    if(min_dry==null)//no valid dry day-> avoiding flood-> impossible
                         return new int[0];
-                    ans[min_dry]=rains[i];
-                    set.remove(min_dry);
+                    ans[min_dry]=rains[i]; //dry lake rains[i] on this dry day
+                    set.remove(min_dry); //remove that dry day(already filled)
                 }
                 map.put(rains[i],i); //update last filled day
             }
