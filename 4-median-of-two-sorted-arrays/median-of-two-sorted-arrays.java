@@ -1,29 +1,31 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int i=0,j=0,a=0;
-        int[] ans=new int[nums1.length+nums2.length];
-        while(i<nums1.length && j<nums2.length){
-            if(nums1[i]<nums2[j]){
-                ans[a++]=nums1[i++];
-            }
-            else if(nums1[i]>nums2[j])
-                ans[a++]=nums2[j++];
-            else{
-                ans[a++]=nums1[i++];
-                ans[a++]=nums2[j++];
-            }
+        int n = nums1.length;
+        int m = nums2.length;
+        int i = 0, j = 0, m1 = 0, m2 = 0;
 
+        // Find median.
+        for (int count = 0; count <= (n + m) / 2; count++) {
+            m2 = m1;
+            if (i != n && j != m) {
+                if (nums1[i] > nums2[j]) {
+                    m1 = nums2[j++];
+                } else {
+                    m1 = nums1[i++];
+                }
+            } else if (i < n) {
+                m1 = nums1[i++];
+            } else {
+                m1 = nums2[j++];
+            }
         }
-        while(i<nums1.length){
-            ans[a++]=nums1[i++];
+
+        // Check if the sum of n and m is odd.
+        if ((n + m) % 2 == 1) {
+            return (double) m1;
+        } else {
+            double ans = (double) m1 + (double) m2;
+            return ans / 2.0;
         }
-        while(j<nums2.length){
-            ans[a++]=nums2[j++];
-        }
-        for(int ii=0;ii<ans.length;ii++)
-            System.out.print(ans[ii]+" ");
-        int n=ans.length;
-        double even=(double)(ans[n/2]+ans[(n-1)/2])/2;
-        return n%2==0?even:(double)(ans[n/2]);
     }
 }
