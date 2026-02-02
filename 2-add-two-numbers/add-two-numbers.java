@@ -10,53 +10,19 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummy=new ListNode (-1);
-        ListNode curr=dummy;
+        ListNode dummy=new ListNode(0);
+        ListNode curr=dummy, head1=l1, head2=l2;
         int carry=0;
-        while(l1!=null || l2!=null){
-            int sum=carry;
-            if(l1!=null){
-                sum+=l1.val;
-                l1=l1.next;
-            }
-            if(l2!=null){
-                sum+=l2.val;
-                l2=l2.next;
-            }
-            ListNode  newnode=new ListNode (sum%10);
+        while(head1!=null || head2!=null || carry!=0){
+            int a=(head1!=null) ? head1.val : 0;
+            int b=(head2!=null) ? head2.val : 0;
+            int sum=a+b+carry;
             carry=sum/10;
-
-            curr.next=newnode;
+            curr.next=new ListNode(sum%10);
             curr=curr.next;
-        }
-        if(carry!=0){
-            ListNode  newnode=new ListNode (carry);
-            curr.next=newnode;
+            if(head1!=null)    head1=head1.next;
+            if(head2!=null)    head2=head2.next;
         }
         return dummy.next;
     }
 }
-
-
-
-//*Adding one to the ll number
-// carry=add_helper(head);
-// if(carry==1){
-//     LinkedNode newnode= new LinkedNode(1);
-//     newnode.next=head;
-//     return newnode;
-// }
-// return head;
-// public static int add_helper(LinkedNode head){
-//     LinkedNode temp=head;
-//     if(temp==null) 
-//         return 1;
-//     carry=helper(head.next);
-//     temp.val+=carry;
-//     if(temp.val<10){
-//         return 0;
-//     }
-//     temp.val=0;
-//     return 1;
-// }
-//TC-O(N), SC-O(N)
