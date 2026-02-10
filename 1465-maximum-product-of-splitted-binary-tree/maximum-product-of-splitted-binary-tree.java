@@ -14,25 +14,24 @@
  * }
  */
 class Solution {
-    long ans=0;
+    long maxpro, total;
+    int mod=1_000_000_007;
     public int maxProduct(TreeNode root) {
-        long total=dfs(root);
-        Queue<TreeNode> qu=new LinkedList<>();
-        qu.add(root);
-        while(!qu.isEmpty()){
-            TreeNode node=qu.poll();
-            if(node==null)   continue;
-
-            long curr=(total-node.val)*node.val;
-            ans=Math.max(ans,curr);
-            if(node.left!=null)   qu.add(node.left);
-            if(node.right!=null)  qu.add(node.right);
-        }
-        return (int) (ans%1000000007);
+        total=sum(root);
+        calcpro(root);
+        return (int)(maxpro%mod);
     }
-    public long dfs(TreeNode root){
+    public long calcpro(TreeNode root){
         if(root==null)  return 0;
-        root.val+=dfs(root.left)+dfs(root.right);
-        return root.val;
+        long left=calcpro(root.left);
+        long right=calcpro(root.right);
+        long node_sum=root.val+left+right;
+        maxpro=Math.max(maxpro, node_sum*(total-node_sum));
+        return node_sum;
+    }
+
+    public int sum(TreeNode root){
+        if(root==null)  return 0;
+        return root.val+sum(root.left)+sum(root.right);
     }
 }
