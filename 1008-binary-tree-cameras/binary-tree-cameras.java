@@ -14,38 +14,23 @@
  * }
  */
 class Solution {
-    int camera=0;
-
+    int cam=0;
     public int minCameraCover(TreeNode root) {
-        int cnt=minCamera(root);
-        if(cnt==-1)  camera++;
-
-        return camera;
+        return count_cam(root)==-1? ++cam : cam;
     }
-
-    public int minCamera(TreeNode root){
-        if(root==null)   return 0;
-
-        int left=minCamera(root.left);
-        int right=minCamera(root.right);
-
-        if(left==-1||right==-1)
-        { //this node needs a camera
-            camera++;
-            return 1; //camera set kra iss node pr 
-        }
-
-// inme s 
-        else if(left==1||right==1){
-            return 0; //covered node
-        }
-        else{
-            return -1; //need a camera
-        }
-    }
-}
-
-
 //need camera->-1
 //has camera->1
 //camera->0
+    public int count_cam(TreeNode root){
+        if(root==null)  return 0;
+
+        int left=count_cam(root.left);
+        int right=count_cam(root.right);
+        if(left==-1 || right==-1){
+            cam++;
+            return 1;
+        }
+        if(left==1|| right==1)  return 0;
+        else return -1;
+    }
+}
