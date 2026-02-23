@@ -4,6 +4,6 @@ class Solution {
         for(int i=0;i<=s.length()-k;i++)
             set.add(s.substring(i,i+k));
            
-        return set.size()==(1<<k);
+        return set.size()==(1<<k);  //(1<<k)=(2^k)-->no.of all binary codes of size k
     }
 }
