@@ -1,30 +1,26 @@
 class Solution {
+    List<List<Integer>> adj;
     public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {
         List<Boolean> ans=new ArrayList<>();
-        if(queries.length==0) return ans;
-        List<List<Integer>> adj = new ArrayList<>();
-        for(int i=0;i<numCourses;i++)
-            adj.add(new ArrayList<>());
-        for(int[] courses:prerequisites)
-            adj.get(courses[0]).add(courses[1]);
-
+         adj=new ArrayList<>();
+        for(int i=0;i<numCourses;i++)  adj.add(new ArrayList<>());
+        for(int[] a:prerequisites)    adj.get(a[0]).add(a[1]);
+        
         Boolean[][] dp=new Boolean[numCourses][numCourses];
-        for(int[] q:queries){
-            ans.add(find(q[0],q[1],new boolean[numCourses],dp,adj));
-        }
+        for(int[] q:queries)
+            ans.add(dfs(q[0], q[1],new boolean[numCourses],dp));
+        
         return ans;
     }
-    public boolean find(int a, int b, boolean[] vis,Boolean[][] dp, List<List<Integer>> adj){
-        if(vis[b]) return true;
-        if(vis[a]) return false;
-
-        if(dp[a][b]!=null) return dp[a][b];
-        for(int nbrs:adj.get(a)){
-            if(nbrs==b) return true;
-            dp[nbrs][b]=find(nbrs,b,vis,dp,adj);
-            if(dp[nbrs][b]) return true;
+    public boolean dfs(int src, int dest,boolean[] vis, Boolean[][] dp){
+        if(src==dest)  return true;
+        vis[src]=true;
+        if(dp[src][dest]!=null)  return dp[src][dest];
+        for(int nbrs:adj.get(src)){
+            if(!vis[nbrs]){
+                if(dfs(nbrs,dest,vis,dp)) return dp[src][dest]= true;
+            }
         }
-        return dp[a][b]=false;
-
+        return dp[src][dest]=false;
     }
 }
